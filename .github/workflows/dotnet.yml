@@ -5,6 +5,8 @@ name: CI
 
 on:
   workflow_dispatch:
+env:
+  DOTNET_INSTALL_DIR: "/home/werter/dotnet"
 
 jobs:
   deploy:
