@@ -17,10 +17,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET SDK ${{ matrix.dotnet-version }}
+    - name: Setup .NET SDK ${{ matrix.dotnet }}
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ matrix.dotnet-version }}
+        dotnet-version: ${{ matrix.dotnet }}
 
         
     - name: Restore dependencies
