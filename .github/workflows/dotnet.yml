@@ -33,16 +33,15 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Publish
-      run: dotnet publish -c Release
-
-    - name: info-utils
-      run: ls
+      run: dotnet publish -c Release --output ./publish
 
     - name: Download artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: meu-artefato
+        path: path/to/artifact
 
     - name: Display structure of downloaded files
       run: ls -R
+      working-directory: path/to/artifact
   
