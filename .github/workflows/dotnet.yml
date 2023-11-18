@@ -1,0 +1,48 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: CI
+
+on:
+  workflow_dispatch:
+env:
+  DOTNET_INSTALL_DIR: "/home/werter/dotnet"
+
+jobs:
+  deploy:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        dotnet: ["8.0.100"]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET SDK ${{ matrix.dotnet }}
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
+
+        
+    - name: Restore dependencies
+      run: dotnet restore
+
+      
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Publish
+      run: dotnet publish -c Release
+
+    - name: info-utils
+      run: ls
+
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: meu-artefato
+
+    - name: Display structure of downloaded files
+      run: ls -R
+  
