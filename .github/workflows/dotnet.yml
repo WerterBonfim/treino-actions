@@ -35,6 +35,9 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release --output ./publish
 
+    - name: Onde estou
+      run: pwd && ls -l
+
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
