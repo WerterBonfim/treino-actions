@@ -38,12 +38,6 @@ jobs:
     - name: Onde estou
       run: pwd && ls -l ./publish
 
-    - name: Download artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: meu-artefato
-        path: publish
-
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: ./publish
